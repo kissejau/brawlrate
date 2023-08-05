@@ -5,8 +5,8 @@ type Info struct {
 	Name string `json:"name"`
 }
 
-type Rank struct {
-	Rank            string `json:"rank"`
+type Ranking struct {
+	Rank            int    `json:"rank"`
 	Name            string `json:"name"`
 	Id              int    `json:"brawlhalla_id"`
 	BestLegend      int    `json:"best_legend"`
@@ -70,7 +70,7 @@ type UnrateLegend struct {
 	XpPercentage      float64 `json:"xp_percentage"`
 }
 
-type Rating struct {
+type Ranked struct {
 	Name       string       `json:"name"`
 	Id         int          `json:"brawlhalla_id"`
 	Rating     int          `json:"rating"`
