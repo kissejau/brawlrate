@@ -1,5 +1,10 @@
 package models
 
+type Info struct {
+	Id   int    `json:"brawlhalla_id"`
+	Name string `json:"name"`
+}
+
 type Stats struct {
 	BrawlhallaId int     `json:"brawlhalla_id"`
 	Name         string  `json:"name"`
