@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/kissejau/brawlhalla-search/internal/server/handlers"
+	"github.com/kissejau/brawlrate/internal/server/handlers"
 )
 
 func RegisterRoutes(r *mux.Router) {

@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 
-	"github.com/kissejau/brawlhalla-search/internal/config"
+	"github.com/gorilla/mux"
+	"github.com/kissejau/brawlrate/internal/config"
+	"github.com/kissejau/brawlrate/internal/server"
 )
 
 func main() {
@@ -12,5 +15,8 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println(config.ApiKey)
+	router := mux.NewRouter()
+	server.Config(router)
+	server.Run(router)
+	http.ListenAndServe(fmt.Sprintf("%s:%s", config.Host, config.Port), router)
 }
