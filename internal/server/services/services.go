@@ -30,6 +30,24 @@ func GetInfoBySteamId(id string) (*models.Info, error) {
 	return info, nil
 }
 
+func GetStats(id string) (*models.Stats, error) {
+	stats, err := bh.GetStats(id)
+	if err != nil {
+		return nil, fmt.Errorf("not correct brawlhallaID: %s", err)
+	}
+
+	return stats, nil
+}
+
+func GetRanked(id string) (*models.Ranked, error) {
+	ranked, err := bh.GetRanked(id)
+	if err != nil {
+		return nil, fmt.Errorf("not correct brawlhallaID: %s", err)
+	}
+
+	return ranked, nil
+}
+
 func init() {
 	if cfgError != nil {
 		panic(cfgError)
