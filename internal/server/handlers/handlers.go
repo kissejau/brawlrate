@@ -4,25 +4,32 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/kissejau/brawlhalla-search/internal/server/services"
+	"github.com/kissejau/brawlhalla-search/internal/server/handlers/utils"
+	u "github.com/kissejau/brawlhalla-search/internal/utils"
 )
 
 func SteamIdHandler(w http.ResponseWriter, r *http.Request) {
-	headers := r.Header.Values("steam_url")
-	if len(headers) <= 0 {
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
+	var data []byte
 
-	steamData, err := services.GetSteamId(headers[0])
+	rd, err := utils.GetRequestData(r)
 	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte(err.Error()))
+		u.Respond(w, http.StatusBadRequest, []byte(err.Error()))
 		return
 	}
 
-	data, _ := json.MarshalIndent(steamData, "", "\t")
+	data, _ = json.Marshal(rd.SteamData)
+	u.Respond(w, http.StatusOK, data)
+}
 
-	w.Header().Add("Content-Type", "application/json")
-	w.Write(data)
+func InfoHandler(w http.ResponseWriter, r *http.Request) {
+	var data []byte
+
+	rd, err := utils.GetRequestData(r)
+	if err != nil {
+		u.Respond(w, http.StatusBadRequest, []byte(err.Error()))
+		return
+	}
+
+	data, _ = json.Marshal(rd.Info)
+	u.Respond(w, http.StatusAccepted, data)
 }
