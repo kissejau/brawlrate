@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/kissejau/brawlhalla-search/internal/server/routes"
+	"github.com/kissejau/brawlrate/internal/server/routes"
 )
 
 func Run(r *mux.Router) {

@@ -1,6 +1,6 @@
 package brawlhalla
 
-import "github.com/kissejau/brawlhalla-search/internal/brawlhalla/models"
+import "github.com/kissejau/brawlrate/internal/brawlhalla/models"
 
 type BrawlhallaService interface {
 	GetInfo(steamId string) (*models.Info, error)

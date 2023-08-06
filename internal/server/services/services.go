@@ -3,10 +3,10 @@ package services
 import (
 	"fmt"
 
-	"github.com/kissejau/brawlhalla-search/internal/brawlhalla"
-	"github.com/kissejau/brawlhalla-search/internal/brawlhalla/models"
-	"github.com/kissejau/brawlhalla-search/internal/config"
-	"github.com/kissejau/brawlhalla-search/internal/utils"
+	"github.com/kissejau/brawlrate/internal/brawlhalla"
+	"github.com/kissejau/brawlrate/internal/brawlhalla/models"
+	"github.com/kissejau/brawlrate/internal/config"
+	"github.com/kissejau/brawlrate/internal/utils"
 )
 
 // idk how to except it

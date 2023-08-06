@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/kissejau/brawlhalla-search/internal/brawlhalla/models"
-	"github.com/kissejau/brawlhalla-search/internal/server/services"
-	"github.com/kissejau/brawlhalla-search/internal/utils"
+	"github.com/kissejau/brawlrate/internal/brawlhalla/models"
+	"github.com/kissejau/brawlrate/internal/server/services"
+	"github.com/kissejau/brawlrate/internal/utils"
 )
 
 type RequestData struct {
