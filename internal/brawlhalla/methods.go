@@ -8,7 +8,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/kissejau/brawlhalla-search/internal/brawlhalla/models"
+	"github.com/kissejau/brawlrate/internal/brawlhalla/models"
 )
 
 // param is steamid in format steamID64

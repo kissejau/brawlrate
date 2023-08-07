@@ -17,15 +17,15 @@ type RequestData struct {
 func GetRequestData(r *http.Request) (*RequestData, error) {
 	rd := &RequestData{}
 
-	steamId := r.Header.Values("steam_id")
-	steamUrl := r.Header.Values("steam_url")
+	steamId := r.Header.Get("steam_id")
+	steamUrl := r.Header.Get("steam_url")
 
 	if len(steamId)+len(steamUrl) <= 0 {
 		return nil, fmt.Errorf("steamID or steamURL were not given")
 	}
 
 	if len(steamId) > 0 {
-		info, err := services.GetInfoBySteamId(steamId[0])
+		info, err := services.GetInfoBySteamId(steamId)
 		if err != nil {
 			return nil, err
 		}
@@ -33,7 +33,7 @@ func GetRequestData(r *http.Request) (*RequestData, error) {
 	}
 
 	if len(steamUrl) > 0 {
-		steamData, err := services.GetSteamId(steamUrl[0])
+		steamData, err := services.GetSteamId(steamUrl)
 		if err != nil {
 			return nil, err
 		}

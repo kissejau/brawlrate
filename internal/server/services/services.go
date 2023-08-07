@@ -6,6 +6,7 @@ import (
 	"github.com/kissejau/brawlrate/internal/brawlhalla"
 	"github.com/kissejau/brawlrate/internal/brawlhalla/models"
 	"github.com/kissejau/brawlrate/internal/config"
+	u "github.com/kissejau/brawlrate/internal/server/services/utils"
 	"github.com/kissejau/brawlrate/internal/utils"
 )
 
@@ -46,6 +47,21 @@ func GetRanked(id string) (*models.Ranked, error) {
 	}
 
 	return ranked, nil
+}
+
+func GetRankings(braket string, region string, page int) ([]models.Ranking, error) {
+	var rankings []models.Ranking
+	rd, err := u.NewRankingsData(braket, region, page)
+	if err != nil {
+		return nil, err
+	}
+
+	rankings, err = bh.GetRankings(rd.Braket, rd.Region, rd.Page)
+	if err != nil {
+		return nil, err
+	}
+
+	return rankings, nil
 }
 
 func init() {
