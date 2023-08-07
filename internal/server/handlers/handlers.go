@@ -2,12 +2,14 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strconv"
 
-	"github.com/kissejau/brawlhalla-search/internal/server/handlers/utils"
-	"github.com/kissejau/brawlhalla-search/internal/server/services"
-	u "github.com/kissejau/brawlhalla-search/internal/utils"
+	"github.com/gorilla/mux"
+	"github.com/kissejau/brawlrate/internal/server/handlers/utils"
+	"github.com/kissejau/brawlrate/internal/server/services"
+	u "github.com/kissejau/brawlrate/internal/utils"
 )
 
 func SteamIdHandler(w http.ResponseWriter, r *http.Request) {
@@ -71,5 +73,29 @@ func RankedHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data, _ = json.Marshal(ranked)
+	u.Respond(w, http.StatusAccepted, data)
+}
+
+func RankingsHandler(w http.ResponseWriter, r *http.Request) {
+	var (
+		data   []byte
+		braket string
+		region string
+		page   int
+	)
+
+	vars := mux.Vars(r)
+	fmt.Println(vars)
+	braket = r.URL.Query().Get("braket")
+	region = r.URL.Query().Get("region")
+	page, _ = strconv.Atoi(r.URL.Query().Get("page"))
+
+	rankings, err := services.GetRankings(braket, region, page)
+	if err != nil {
+		u.Respond(w, http.StatusBadRequest, []byte(err.Error()))
+		return
+	}
+
+	data, _ = json.Marshal(rankings)
 	u.Respond(w, http.StatusAccepted, data)
 }
